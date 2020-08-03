@@ -1,0 +1,9 @@
+
+.ins { background: #cfc; font-weight:bold; }
+.del { background: #fcc;  font-weight:bold;}
+ins { background: #9f9; }
+del { background: #f99; }
+hr { background: none; border: none; border-top: 2px dotted #000; color: #fff; }
+.line { width:2%;}
+.leftChange, .rightChange { width:2%;}
+.rightText, .leftText { width:47%;}

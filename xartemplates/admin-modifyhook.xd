@@ -1,0 +1,10 @@
+    <div class="xar-form-input-wrapper">
+        <label for="changelog" class="xar-form-label" title="#xarML('Select Enter changelog comment')#">
+            <xar:if condition="!empty($link)">
+                 <a href="#$link#"><xar:mlstring>Change Log</xar:mlstring></a>
+            <xar:else />
+                <xar:mlstring>Change Log</xar:mlstring>
+            </xar:if>
+        </label>
+        <input type="text" name="changelog_remark" value="#$remark#" size="40" />
+    </div>

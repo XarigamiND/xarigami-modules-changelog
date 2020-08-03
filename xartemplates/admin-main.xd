@@ -1,0 +1,48 @@
+<xar:comment> License: GPL http://www.gnu.org/copyleft/gpl.html </xar:comment>
+<div class="xar-mod-page">
+    <div class="xar-mod-head">
+        <xar:if condition="!xarRequestIsAJAX()">
+            <xar:template type="module" module="base" file="admin-menu" />
+        </xar:if>
+    </div>
+    <div class="xar-mod-body">
+        <h1><xar:mlstring>Overview</xar:mlstring></h1>
+        <div class="xar-mod-content">
+            <img src="#xarTplGetImage('admin.png','changelog')#" class="xar-module-icon" alt="official icon" />
+
+            <h2><xar:mlstring>Overview</xar:mlstring></h2>
+
+            <h2><xar:mlstring>What is it?</xar:mlstring></h2>
+                <p><em><xar:mlstring>ChangeLog is a Xaraya Utility Module.</xar:mlstring></em>
+                <xar:mlstring>that allows you to keep track of changes in module items.</xar:mlstring></p>
+            <h3><xar:mlstring>How to use it?</xar:mlstring></h3>
+                 <p><xar:mlstring>For each hooked module, specify the fields you want to keep track of</xar:mlstring></p>
+            <h3><xar:mlstring>Included Blocks</xar:mlstring></h3>
+                   <p><xar:mlstring>There are no included blocks at this time</xar:mlstring></p>
+
+            <h3><xar:mlstring>Included Hooks</xar:mlstring></h3>
+                <p>
+                    <ul>
+                        <li><xar:mlstring>create/modify/update/delete -- Allows you to create/update change logs</xar:mlstring></li>
+                        <li><xar:mlstring>display -- Allows you to display change logs</xar:mlstring></li>
+                    </ul>
+                </p>
+
+            <h3>
+                <xar:mlstring>Further Information</xar:mlstring>
+            </h3>
+            <p>
+                <xar:mlstring>Further information on the Changelog module can be found at</xar:mlstring>
+            </p>
+            <ul>
+                <li><xar:mlstring>the Xarigami project pages at</xar:mlstring> <a title="#xarML('Changelog Module - Extension 185')#" href="http://xarigami.com/project/changelog">Xarigami Changelog project</a>.
+                </li>
+                <li><xar:mlstring>Related tutorials and documentation on Changelog found at</xar:mlstring> <a href="http://xarigami.com/project/changelog" title="#xarML('Related documentation on Changelog')#"><xar:mlstring>Project Resource page.</xar:mlstring></a>
+                </li>
+             </ul>
+            <p class="xar-sub">
+                <strong>&nbsp;<xar:mlstring>Changelog Module Overview</xar:mlstring></strong><br />&nbsp;<xar:mlstring>Version</xar:mlstring> 1.0.1&#160; 2009-08-19
+            </p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+<div class="xar-mod-page">
+    <div class="xar-mod-head">
+        <xar:if condition="!xarRequestIsAJAX()">
+            <xar:template type="module" module="base" file="admin-menu" />
+        </xar:if>
+    </div>
+    <div class="xar-mod-body">
+        <h1><xar:mlstring>Changelog Revision Listing</xar:mlstring></h1>
+        <div class="xar-mod-content">
+            <xar:if condition="!empty($itemlink)">
+                <h2><a href="#$itemlink#">#$itemtitle# &#160; &quot;#$itemlabel#&quot;</a></h2>
+            </xar:if>
+            <form method="post" action="&xar-modurl-changelog-admin-showdiff;">
+                <fieldset>
+                    <legend><xar:mlstring>Revisions For This Item</xar:mlstring></legend>
+                    <div class="xar-form-input-wrapper">
+                        <table class="xar-items">
+                            <tr>
+                                <th><xar:mlstring>Revision</xar:mlstring></th>
+                                <th><xar:mlstring>Status</xar:mlstring></th>
+                                <th><xar:mlstring>Editor</xar:mlstring></th>
+                                <xar:if condition="$showhost">
+                                <th><xar:mlstring>Hostname</xar:mlstring></th>
+                                </xar:if>
+                                <th><xar:mlstring>Date</xar:mlstring></th>
+                                <th><xar:mlstring>Remark</xar:mlstring></th>
+                            </tr>
+                            <xar:foreach in="$changes" key="$logid" value="$change">
+                            <tr>
+                                <td class="xar-norm">
+                                    <xar:if condition="!empty($change['link'])">
+                                    <input type="checkbox" name="logids[]" value="#$logid#" />
+                                        <a href="#$change['link']#">#$change['version']#</a>
+                                    <xar:else />
+                                        #$change['version']#
+                                    </xar:if>
+                                </td>
+                                <td class="xar-norm">#$change['status']#</td>
+                                <td class="xar-norm"><a href="#$change['profile']#">#$change['editorname']#</a></td>
+                                <xar:if condition="$showhost">
+                                <td class="xar-norm">#$change['hostname']#</td>
+                                </xar:if>
+                                <td class="xar-norm">
+                                    <xar:ml>
+                                        <xar:mlstring>#(1) #(2)</xar:mlstring>
+                                        <xar:mlvar>#xarLocaleGetFormattedDate('medium',$change['date'])#</xar:mlvar>
+                                        <xar:mlvar>#xarLocaleGetFormattedTime('medium',$change['date'])#</xar:mlvar>
+                                    </xar:ml>
+                                </td>
+                                <td class="xar-norm">#$change['remark']#</td>
+                            </tr>
+                            </xar:foreach>
+                        </table>
+                    </div>
+                </fieldset>
+                <p class="xar-form-input-wrapper-before">
+                    <xar:if condition="!empty($prevversion)">
+                    <a href="#$prevversion#"><xar:mlstring>Show first revision</xar:mlstring></a>
+                        <xar:if condition="!empty($prevdiff)">
+                        [<a href="#$prevdiff#"><em><xar:mlstring>diff</xar:mlstring></em></a>]
+                        </xar:if>
+                    </xar:if>
+                    -
+                    <xar:if condition="!empty($nextversion)">
+                    <a href="#$nextversion#"><xar:mlstring>Show last revision</xar:mlstring></a>
+                        <xar:if condition="!empty($nextdiff)">
+                        [<a href="#$nextdiff#"><em><xar:mlstring>diff</xar:mlstring></em></a>]
+                        </xar:if>
+                    </xar:if>
+                </p>
+                <div class="xar-form-footer">
+                    <input type="hidden" name="modid" value="#$modid#" />
+                    <input type="hidden" name="itemtype" value="#$itemtype#" />
+                    <input type="hidden" name="itemid" value="#$itemid#" />
+                    <input type="submit" value="#xarML('Diff')#" />
+                </div>
+           </form>
+        </div>
+    </div>
+</div>

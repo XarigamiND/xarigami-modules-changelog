@@ -1,0 +1,119 @@
+<xar:style scope="module" module="changelog" file="changelog" />
+<div class="xar-mod-page">
+    <div class="xar-mod-head">
+        <xar:if condition="!xarRequestIsAJAX()">
+            <xar:template type="module" module="base" file="admin-menu" />
+        </xar:if>
+    </div>
+    <div class="xar-mod-body">
+        <h1><xar:mlstring>Revision Differences</xar:mlstring></h1>
+        <div class="xar-mod-content">
+            <h2>
+                <xar:if condition="!empty($itemlink)">
+                    <a href="#$itemlink#">#$itemtitle#&nbsp;&quot;#$itemlabel#&quot;</a>
+                </xar:if>
+
+            </h2>
+            <fieldset>
+                <legend>
+                <xar:ml>
+                    <xar:mlstring>Difference between revision #(1) and #(2) of #(3)</xar:mlstring>
+                    <xar:mlvar>#$oldversion#</xar:mlvar>
+                    <xar:mlvar>#$newversion#</xar:mlvar>
+                    <xar:mlvar>#$numversions#</xar:mlvar>
+                </xar:ml>
+                </legend>
+                <div class="xar-form-input-wrapper">
+
+                <table class="xar-items">
+                    <tr>
+                        <th><xar:mlstring>Revision</xar:mlstring></th>
+                        <th><xar:mlstring>Status</xar:mlstring></th>
+                        <th><xar:mlstring>Editor</xar:mlstring></th>
+                        <xar:if condition="$showhost">
+                        <th><xar:mlstring>Hostname</xar:mlstring></th>
+                        </xar:if>
+                        <th><xar:mlstring>Date</xar:mlstring></th>
+                        <th><xar:mlstring>Remark</xar:mlstring></th>
+                    </tr>
+                    <xar:foreach in="$changes" key="$logid" value="$change">
+                    <tr>
+                        <td class="xar-norm">
+                        <xar:if condition="!empty($change['link'])">
+                            <a href="#$change['link']#">#$change['version']#</a>
+                        <xar:else />
+                            #$change['version']#
+                        </xar:if>
+                        </td>
+                        <td class="xar-norm">#$change['status']#</td>
+                        <td class="xar-norm"><a href="#$change['profile']#">#$change['editorname']#</a></td>
+                        <xar:if condition="$showhost">
+                        <td class="xar-norm">#$change['hostname']#</td>
+                        </xar:if>
+                        <td class="xar-norm">
+                            <xar:ml>
+                                <xar:mlstring>#(1) #(2)</xar:mlstring>
+                                <xar:mlvar>#xarLocaleGetFormattedDate('medium',$change['date'])#</xar:mlvar>
+                                <xar:mlvar>#xarLocaleGetFormattedTime('medium',$change['date'])#</xar:mlvar>
+                            </xar:ml>
+                        </td>
+                        <td class="xar-norm">#$change['remark']#</td>
+                    </tr>
+                    </xar:foreach>
+                </table>
+                <p>
+                    <a href="#$link#"><xar:mlstring>Back to revision listing</xar:mlstring></a>
+                    -
+                    <xar:if condition="!empty($prevdiff)">
+                    <a href="#$prevdiff#"><xar:mlstring>Show previous diff</xar:mlstring></a>
+                    </xar:if>
+                    -
+                    <xar:if condition="!empty($nextdiff)">
+                    <a href="#$nextdiff#"><xar:mlstring>Show next diff</xar:mlstring></a>
+                    </xar:if>
+                </p>
+               </div>
+               </fieldset>
+               <fieldset>
+                <legend>
+                    <xar:mlstring>Field listing</xar:mlstring>
+                 </legend>
+                <xar:if condition="$difftype eq '1'">
+
+                    <table class="xar-items">
+                        <tr>
+                            <th style="width:40px;"><xar:mlstring>Line</xar:mlstring></th>
+                            <th colspan="2"><xar:mlstring>Previous</xar:mlstring></th>
+                            <th colspan="2"><xar:mlstring>Current</xar:mlstring></th>
+                        </tr>
+
+                        <xar:foreach in="$fields" key="$field" value="$value">
+                            <table class="diff xar-items">
+                            <tr>
+                                <th colspan="5">#$field#</th>
+                            </tr>
+                            <xar:foreach in="$value" key="$k" value="$line">
+                                #$line#
+                            </xar:foreach>
+                            </table>
+                        </xar:foreach>
+                    </table>
+                <xar:else />
+                    <table class="xar-items">
+                        <tr>
+                            <th><xar:mlstring>Fields</xar:mlstring></th>
+                            <th><xar:mlstring>Value Changes</xar:mlstring></th>
+                        </tr>
+                        <xar:foreach in="$fields" key="$field" value="$value">
+                        <tr>
+                            <td class="xar-norm">#$field#</td>
+                            <td class="xar-norm">#$value#</td>
+                        </tr>
+                        </xar:foreach>
+                    </table>
+
+                </xar:if>
+                </fieldset>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+Version 1.1.2 jojodee/2skies.com 14/11/2012
+-------------------------------------'
+xclog-001064    New feature 	coloured diff listings including traditional existing one as an option
+xclog-001063 	Bug 	Error on revision listing - aid not found
+
+Version 1.1.1 jojodee/2skies.com 22/08/2007
+-------------------------------
+Module updated for xarigami
+
+
+Version 1.1.1 Mikiespub
+---------------------------
+Original xaraya module
+

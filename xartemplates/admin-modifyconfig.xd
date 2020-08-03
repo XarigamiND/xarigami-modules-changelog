@@ -1,0 +1,59 @@
+<div class="xar-mod-page">
+    <div class="xar-mod-head">
+        <xar:if condition="!xarRequestIsAJAX()">
+            <xar:template type="module" module="base" file="admin-menu" />
+        </xar:if>
+    </div>
+    <div class="xar-mod-body">
+        <h1><xar:mlstring>Modify configuration</xar:mlstring></h1>
+        <div class="xar-mod-content">
+            <form method="post" action="#xarModURL('changelog','admin','updateconfig')#" enctype="application/x-www-form-urlencoded" >
+                <fieldset>
+                    <legend>
+                        <xar:mlstring>Configuration Options</xar:mlstring>
+                    </legend>
+                    <div class="xar-form-input-wrapper">
+                        <label for="numstats" class="xar-form-label"><xar:mlstring>Items per page in lists</xar:mlstring>:</label>
+                        <input type="text" name="numstats" id="numstats" size="4" maxlength="4" value="#$numstats#" />
+                    </div>
+                    <div class="xar-form-input-wrapper-after">
+                       <xar:if condition="!empty($showtitle)">
+                              <input type="checkbox" name="showtitle" id="showtitle" value="1" checked="checked" />
+                            <xar:else/>
+                              <input type="checkbox" name="showtitle" id="showtitle" value="1" />
+                            </xar:if>
+                        <label for="showtitle"><xar:mlstring>Show the item title in lists?</xar:mlstring></label>
+                    </div>
+                    <div class="xar-form-input-wrapper-after">
+                        <xar:data-input type="checkbox" name="difftype" id="difftype" value="1" checked="$difftype" />
+                        <label for="difftype"><xar:mlstring>Colored diff instead of traditional?</xar:mlstring></label>
+                    </div>
+                    <xar:foreach in="$settings" key="$modname" value="$config">
+                        <p class="xar-form-input-wrapper-before xar-padding-medium">
+                            <strong>#$config['label']#</strong>
+                        </p>
+                        <div class="xar-form-input-wrapper">
+                            <label for="changelog_#$modname#" class="xar-form-label"><xar:mlstring>Fields to monitor:</xar:mlstring></label>
+                            <input type="text" name="changelog[#$modname#]" id="changelog_#$modname#" value="#$config['changelog']#" size="40" />
+                            <xar:mlstring>(comma-separated list)</xar:mlstring>
+                        </div>
+                        <xar:if condition="!empty($config['includedd'])">
+                            <div class="xar-form-input-wrapper">
+                                <label for="includedd_#$modname#" class="xar-form-label"><xar:mlstring>Include DD fields:</xar:mlstring></label>
+                                <xar:if condition="$config['includedd'] gt 1">
+                                    <input type="checkbox" name="includedd[#$modname#]" id="includedd_#$modname#" value="1" checked="checked" />
+                                <xar:else/>
+                                    <input type="checkbox" name="includedd[#$modname#]" id="includedd_#$modname#" value="1" />
+                                </xar:if>
+                            </div>
+                        </xar:if>
+                    </xar:foreach>
+                </fieldset>
+                <div class="xar-form-footer">
+                    <input type="hidden" name="authid" id="authid" value="#$authid#" />
+                    <input type="submit" value="#xarML('Update Change Log Configuration')#" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
