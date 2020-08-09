@@ -31,14 +31,10 @@
             <h3>
                 <xar:mlstring>Further Information</xar:mlstring>
             </h3>
-            <p>
-                <xar:mlstring>Further information on the Changelog module can be found at</xar:mlstring>
-            </p>
             <ul>
-                <li><xar:mlstring>the Xarigami project pages at</xar:mlstring> <a title="#xarML('Changelog Module - Extension 185')#" href="http://xarigami.com/project/changelog">Xarigami Changelog project</a>.
-                </li>
-                <li><xar:mlstring>Related tutorials and documentation on Changelog found at</xar:mlstring> <a href="http://xarigami.com/project/changelog" title="#xarML('Related documentation on Changelog')#"><xar:mlstring>Project Resource page.</xar:mlstring></a>
-                </li>
+                <li><a href="http://xarigami.org/project/changelog"><xar:mlstring>Xarigami Changelog project page</xar:mlstring></a></li>
+                <li><a href="http://xarigami.org/contrails/displayproject/xclog"><xar:mlstring>Xarigami Changelog issue tracker</xar:mlstring></a></li>
+                <li><a href="http://xarigami.org/keywords/changelog"><xar:mlstring>Changelog related articles</xar:mlstring></a></li>
              </ul>
             <p class="xar-sub">
                 <strong>&nbsp;<xar:mlstring>Changelog Module Overview</xar:mlstring></strong><br />&nbsp;<xar:mlstring>Version</xar:mlstring> 1.0.1&#160; 2009-08-19
