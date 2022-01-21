@@ -11,12 +11,6 @@
  * jojodee - Update for xaraya
  */
 
-/* *
- * FIXME: possibly remove assert()'s for production version?
- * PHP3 does not have assert()
- */
-define('USE_ASSERTS', function_exists('assert'));
-
 class _DiffOp
 {
     var $type;
@@ -184,8 +178,8 @@ class _DiffEngine
         $edits = array();
         $xi = $yi = 0;
         while ($xi < $n_from || $yi < $n_to) {
-            USE_ASSERTS && assert($yi < $n_to || $this->xchanged[$xi]);
-            USE_ASSERTS && assert($xi < $n_from || $this->ychanged[$yi]);
+            assert($yi < $n_to || $this->xchanged[$xi]);
+            assert($xi < $n_from || $this->ychanged[$yi]);
 
             // Skip matching "snake".
             $copy = array();
@@ -274,13 +268,13 @@ class _DiffEngine
         foreach ($matches as $junk => $y)
             if (empty($this->in_seq[$y])) {
             $k = $this->_lcs_pos($y);
-            USE_ASSERTS && assert($k > 0);
+            assert($k > 0);
             $ymids[$k] = $ymids[$k-1];
             break;
                     }
         foreach ($matches as $junk => $y) {
             if ($y > $this->seq[$k-1]) {
-            USE_ASSERTS && assert($y < $this->seq[$k]);
+            assert($y < $this->seq[$k]);
             // Optimization: this is a common case:
             //  next match is just replacing previous match.
             $this->in_seq[$this->seq[$k]] = false;
@@ -289,7 +283,7 @@ class _DiffEngine
                     }
             else if (empty($this->in_seq[$y])) {
             $k = $this->_lcs_pos($y);
-            USE_ASSERTS && assert($k > 0);
+            assert($k > 0);
             $ymids[$k] = $ymids[$k-1];
                     }
                 }
@@ -325,7 +319,7 @@ class _DiffEngine
         $end = $mid;
         }
 
-    USE_ASSERTS && assert($ypos != $this->seq[$end]);
+    assert($ypos != $this->seq[$end]);
 
     $this->in_seq[$this->seq[$end]] = false;
     $this->seq[$end] = $ypos;
@@ -406,7 +400,7 @@ class _DiffEngine
     $i = 0;
     $j = 0;
 
-    USE_ASSERTS && assert('sizeof($lines) == sizeof($changed)');
+    assert(sizeof($lines) == sizeof($changed));
     $len = sizeof($lines);
     $other_len = sizeof($other_changed);
 
@@ -426,7 +420,7 @@ class _DiffEngine
         $j++;
     
         while ($i < $len && ! $changed[$i]) {
-        USE_ASSERTS && assert('$j < $other_len && ! $other_changed[$j]');
+        assert($j < $other_len && ! $other_changed[$j]);
         $i++; $j++;
         while ($j < $other_len && $other_changed[$j])
             $j++;
@@ -458,10 +452,10 @@ class _DiffEngine
             $changed[--$i] = false;
             while ($start > 0 && $changed[$start - 1])
             $start--;
-            USE_ASSERTS && assert('$j > 0');
+            assert($j > 0);
             while ($other_changed[--$j])
             continue;
-            USE_ASSERTS && assert('$j >= 0 && !$other_changed[$j]');
+            assert($j >= 0 && !$other_changed[$j]);
                 }
 
         /*
@@ -484,7 +478,7 @@ class _DiffEngine
             while ($i < $len && $changed[$i])
             $i++;
 
-            USE_ASSERTS && assert('$j < $other_len && ! $other_changed[$j]');
+            assert($j < $other_len && ! $other_changed[$j]);
             $j++;
             if ($j < $other_len && $other_changed[$j]) {
             $corresponding = $i;
@@ -501,10 +495,10 @@ class _DiffEngine
         while ($corresponding < $i) {
         $changed[--$start] = 1;
         $changed[--$i] = 0;
-        USE_ASSERTS && assert('$j > 0');
+        assert($j > 0);
         while ($other_changed[--$j])
             continue;
-        USE_ASSERTS && assert('$j >= 0 && !$other_changed[$j]');
+        assert($j >= 0 && !$other_changed[$j]);
             }
         }
     }
